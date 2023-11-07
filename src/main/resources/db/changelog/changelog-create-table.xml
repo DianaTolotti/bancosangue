@@ -1,0 +1,44 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="1" author="diana">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pessoa"/>
+            </not>
+        </preConditions>
+
+        <comment>Criação de tabela para cadastro de pessoa</comment>
+        <sql>
+            -- Cria a tabela "pessoa"
+            CREATE TABLE pessoa (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            nome VARCHAR(255),
+            cpf VARCHAR(14),
+            rg VARCHAR(12),
+            data_nasc DATE,
+            sexo VARCHAR(10),
+            mae VARCHAR(255),
+            pai VARCHAR(255),
+            email VARCHAR(255),
+            cep VARCHAR(9),
+            endereco VARCHAR(255),
+            numero INTEGER,
+            bairro VARCHAR(255),
+            cidade VARCHAR(255),
+            estado VARCHAR(2),
+            telefone_fixo VARCHAR(14),
+            celular VARCHAR(20),
+            altura DECIMAL(4, 2),
+            peso INTEGER,
+            tipo_sanguineo VARCHAR(5)
+            );
+        </sql>
+
+        <rollback>
+            <dropTable tableName="pessoa"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
